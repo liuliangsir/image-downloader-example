@@ -1,0 +1,35 @@
+{
+  "name": "image-downloader-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel"
+  },
+  "repository": "git@github.com:liuliangsir/image-downloader-example.git",
+  "author": "liuliangsir <2269305724@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jszip": "^3.3.0"
+  },
+  "devDependencies": {
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.2",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^2.0.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,html}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
