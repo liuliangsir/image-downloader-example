@@ -8,7 +8,7 @@ const imgs = ((datas) => {
 
 ;(() => {
   const fragment = document.createDocumentFragment()
-  const logos = imgs.slice(0, 18)
+  const logos = imgs.slice(0, 36)
 
   logos.forEach(({ url, name, type }) => {
     const img = document.createElement('img')

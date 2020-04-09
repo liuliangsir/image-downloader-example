@@ -1,13 +1,14 @@
 import JSZip from 'jszip'
 
-const clickEventHandler = (event) => {
+const clickEventHandler = async (event) => {
   const zip = new JSZip()
   const hash = new Set()
 
   const dataSets = [...document.querySelectorAll('.wrapper img')].map((element) => element.dataset)
   let counter = 1
 
-  Promise.all(
+  console.time('download')
+  await Promise.all(
     dataSets.map(({ url, name, type }) =>
       fetch(url).then((response) => {
         if (response.status === 200 || response.status === 0) {
@@ -54,6 +55,7 @@ const clickEventHandler = (event) => {
     .catch((error) => {
       console.log(error)
     })
+  console.timeEnd('download')
 }
 
 ;(() => {
