@@ -1,4 +1,3 @@
-import avg from '../img/avg.png'
 import json from '../json/app.json'
 
 const [width, height] = [192, 108]
