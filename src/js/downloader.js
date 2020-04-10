@@ -50,12 +50,13 @@ const clickEventHandler = async (event) => {
 
           element.click()
           document.body.removeChild(element)
+
+          console.timeEnd('download')
         })
     })
     .catch((error) => {
       console.log(error)
     })
-  console.timeEnd('download')
 }
 
 ;(() => {
