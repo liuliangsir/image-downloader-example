@@ -1,16 +1,22 @@
 import JSZip from 'jszip'
 
 const clickEventHandler = async (event) => {
+  const {
+    target: {
+      dataset: { type },
+    },
+  } = event
+
   const zip = new JSZip()
   const hash = new Set()
 
   const dataSets = [...document.querySelectorAll('.wrapper img')].map((element) => element.dataset)
   let counter = 1
 
-  console.time('download')
+  const startTime = window.performance.now()
   await Promise.all(
-    dataSets.map(({ url, name, type }) =>
-      fetch(url).then((response) => {
+    dataSets.map(({ name }) =>
+      fetch(window.globalMap[type]).then((response) => {
         if (response.status === 200 || response.status === 0) {
           let finalName = `${name}.${type}`
 
@@ -18,7 +24,7 @@ const clickEventHandler = async (event) => {
             counter = 1
             hash.add(finalName)
           } else {
-            finalName = finalName.replace(/.+(?=\.(?:jpe?g|png|gif|svg)$)/i, `$&${counter++}`)
+            finalName = finalName.replace(/.+(?=\.(?:jpe?g|png|gif|svg|mp3)$)/i, `$&${counter++}`)
           }
 
           return Promise.resolve({
@@ -51,7 +57,7 @@ const clickEventHandler = async (event) => {
           element.click()
           document.body.removeChild(element)
 
-          console.timeEnd('download')
+          downloaderTime.textContent = `耗时 ${(window.performance.now() - startTime) | 0} ms`
         })
     })
     .catch((error) => {
@@ -60,5 +66,5 @@ const clickEventHandler = async (event) => {
 }
 
 ;(() => {
-  downloader.addEventListener('click', clickEventHandler, false)
+  downloaders.addEventListener('click', clickEventHandler, false)
 })()

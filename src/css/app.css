@@ -33,16 +33,17 @@
 
 .downloader-container {
   padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 0;
   text-align: center;
 }
 
 .downloader {
-  display: inline-block;
   border: 1px solid #dcdcdc;
   border-radius: 6px;
   padding: 6px 24px;
-  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
   background-color: #ffffff;
+  background-image: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
   color: #666666;
   box-shadow: inset 0px 1px 0px 0px #ffffff;
   font-weight: bold;
@@ -61,4 +62,8 @@
 .downloader:active {
   position: relative;
   top: 1px;
+}
+
+.downloader:not(:last-child) {
+  margin-right: 5px;
 }
